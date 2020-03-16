@@ -4,7 +4,7 @@
 
 ##### Integrantes:
 1. Carla Pérez Gavilán Del Castillo - *A01023033* - *CSF*
-2. Rubén Hernández Rivas - *A01024669* - *CSFT*
+2. Rubén Hernández Rivas - *A01024669* - *CSF*
 3. *[Poner aquí Nombre y Apellidos del integrante 3]* - *[Poner aquí su Matrícula]* - *[Poner aquí su campus]*
 4. *[Poner aquí Nombre y Apellidos del integrante 4]* - *[Poner aquí su Matrícula]* - *[Poner aquí su campus]*
 5. *[Poner aquí Nombre y Apellidos del integrante 5]* - *[Poner aquí su Matrícula]* - *[Poner aquí su campus]*
