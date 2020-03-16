@@ -3,7 +3,7 @@
 ---
 
 ##### Integrantes:
-1. *Carla Pérez Gavilán Del Castillo * - *A01023033* - *CSF*
+1. Carla Pérez Gavilán Del Castillo - *A01023033* - *CSF*
 2. *[Poner aquí Nombre y Apellidos del integrante 2]* - *[Poner aquí su Matrícula]* - *[Poner aquí su campus]*
 3. *[Poner aquí Nombre y Apellidos del integrante 3]* - *[Poner aquí su Matrícula]* - *[Poner aquí su campus]*
 4. *[Poner aquí Nombre y Apellidos del integrante 4]* - *[Poner aquí su Matrícula]* - *[Poner aquí su campus]*
