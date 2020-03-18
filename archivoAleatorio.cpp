@@ -3,7 +3,7 @@
 #include <time.h>
 #include<string.h>
 
-#include <cstdlib>\
+#include <cstdlib>
 
 
 #define N 4
