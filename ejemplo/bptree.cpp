@@ -434,7 +434,7 @@ int main()
 		    if( iFile.eof() ) break;
 		    iFile >> data;
 			startTime = clock();
-			Insert(key,NewObjectFile(to_string(key)+"\t"+data));
+			Insert(key, NewObjectFile(to_string(key)+"\t"+data));
 			endTime = clock();
 			statsInsert.pb( double(endTime-startTime) / CLOCKS_PER_SEC );
 			inserted++;
