@@ -1,3 +1,25 @@
+/**
+ * This file is part of {{ tc2017-t2-primavera-2020-equipo-5-1 }}.
+ *
+ * Developed for Diseño, Análisis de Algoritmos
+ * This product includes software developed by the LSST Project
+ * (https://www.lsst.org).
+ * See the COPYRIGHT file at the top-level directory of this distribution
+ * for details of code ownership.
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
 #include <algorithm>
 #include <iostream>
 #include <stdio.h>
@@ -32,7 +54,11 @@ public:
     }
 };
 
-/* AVL tree */
+/**
+*
+* AVL tree
+* Method that creates the AVL tree and balaced acordingly
+**/
 template <class T>
 class AVLtree {
 public:
@@ -56,7 +82,12 @@ private:
     void clearNode(AVLnode<T>* n);
 };
 
-/* AVL class definition */
+/*
+*
+* AVL class definition
+*
+**/
+
 template <class T>
 void AVLtree<T>::rebalance(AVLnode<T>* n)
 {
@@ -265,6 +296,13 @@ void AVLtree<T>::deleteKey(const T delKey)
     }
 }
 
+/**
+*
+* Clase para la impresion del balance y el arreglo de forma acendente y decendente
+*
+**/
+
+
 template <class T>
 void AVLtree<T>::printBalance()
 {
@@ -336,6 +374,12 @@ void Descendente(int arr[], int tamArreglo)
     
 };
 
+/**
+ *
+ *Arreglo de busqueda de numemros dentro del arreglo
+ *
+ */
+
 void Buscar(int arr[], int tamArreglo, int valPerd)
 {
     
@@ -384,9 +428,9 @@ void Buscar(int arr[], int tamArreglo, int valPerd)
     cout << "\n";
 };
 
-//#
-//# inicio del main
-//#
+/**
+* inicio del main
+*/
 
 int main()
 {
@@ -445,7 +489,8 @@ int main()
     }
     //#############################################################
     
-    
+    // Opcion para borrar numeros
+    //#############################################################
         cout << "\n" << '\n';
     cout << "Cuántos valores deseas borrar?" << endl;
     cin >> cant;
@@ -464,6 +509,7 @@ int main()
         cout << "\n";
         //deleteKey(root, delVal);
     }
+    //#############################################################
         cout << "\n" << '\n';
     cout << "\n" << '\n';
     Ascendente(arr, tamArreglo);
@@ -502,3 +548,4 @@ int main()
 
     return 0;
 }
+
