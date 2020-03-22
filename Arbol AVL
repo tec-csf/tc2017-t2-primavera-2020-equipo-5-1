@@ -318,11 +318,13 @@ void Ascendente(int arr[], int tamArreglo)
     
     sort(arr, arr + tamArreglo);
 
+    
     cout << "El arreglo en orden ascendente es " << endl;
-
+    /*
     for (int i = 0; i < tamArreglo; ++i) {
         cout << arr[i] << " ";
     }
+     */
 
     cout << "\n";
     
@@ -350,11 +352,13 @@ void Descendente(int arr[], int tamArreglo)
 
     sort(arr, arr + tamArreglo, greater<>());
 
+    
     cout << "El arreglo en orden decendente es " << endl;
-
+    /*
     for (int i = 0; i < tamArreglo; ++i) {
         cout << arr[i] << " ";
     }
+     */
 
     cout << "\n";
     
@@ -548,4 +552,3 @@ int main()
 
     return 0;
 }
-
