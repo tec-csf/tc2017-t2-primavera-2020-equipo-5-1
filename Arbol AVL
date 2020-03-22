@@ -320,11 +320,11 @@ void Ascendente(int arr[], int tamArreglo)
 
     
     cout << "El arreglo en orden ascendente es " << endl;
-    /*
+    
     for (int i = 0; i < tamArreglo; ++i) {
         cout << arr[i] << " ";
     }
-     */
+     
 
     cout << "\n";
     
@@ -441,13 +441,13 @@ int main()
     AVLtree<int> t;
 
     int tamArreglo, delVal, cant, newVal, tamRand, opcion, buscado, tamArregloB;
-
-    tamRand = 10; // inserta el tamaño del random
-    tamArreglo = 10; // inserta el tamaño de la poblacion de numeros en el arbol
+//#
+    tamRand = 100; // inserta el numero de la poblacion que nececitas en el arbol
+//#
+    tamArreglo = tamRand;
 
     tamArregloB = 10;
 
-        tamArreglo = tamArreglo * 2;
 
     int arr[tamArreglo];
 
@@ -552,3 +552,4 @@ int main()
 
     return 0;
 }
+
