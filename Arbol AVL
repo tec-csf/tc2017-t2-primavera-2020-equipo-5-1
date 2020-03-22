@@ -320,11 +320,11 @@ void Ascendente(int arr[], int tamArreglo)
 
     
     cout << "El arreglo en orden ascendente es " << endl;
-    
+    /*
     for (int i = 0; i < tamArreglo; ++i) {
         cout << arr[i] << " ";
     }
-     
+     */
 
     cout << "\n";
     
@@ -442,7 +442,7 @@ int main()
 
     int tamArreglo, delVal, cant, newVal, tamRand, opcion, buscado, tamArregloB;
 //#
-    tamRand = 100; // inserta el numero de la poblacion que nececitas en el arbol
+    tamRand = 1000; // inserta el numero de la poblacion que nececitas en el arbol
 //#
     tamArreglo = tamRand;
 
@@ -451,7 +451,7 @@ int main()
 
     int arr[tamArreglo];
 
-        int arrBuscable[10] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };// numeros que quieres que busque, no son random pero es lo mismo.
+        int arrBuscable[10] = { 10, 20, 30, 40, 50, 60, 70, 80, 90, 100 };// numeros que quieres que busque, no son random pero es lo mismo.
 
         srand((unsigned)time(0));
 
@@ -467,6 +467,11 @@ int main()
     for (size_t i = 0; i < tamArreglo; i++) {
         t.insert(arr[i++]);
     }
+    auto stop = high_resolution_clock::now();
+
+    auto durationSeg = duration_cast<seconds>(stop - start);
+    auto durationMilli = duration_cast<milliseconds>(stop - start);
+    auto durationMicro = duration_cast<microseconds>(stop - start);
 
         
     //t.printBalance(); // imprime el balance del arbol, no es necesario
@@ -534,12 +539,6 @@ int main()
 
     cout << "\n";
 
-    auto stop = high_resolution_clock::now();
-
-    auto durationSeg = duration_cast<seconds>(stop - start);
-    auto durationMilli = duration_cast<milliseconds>(stop - start);
-    auto durationMicro = duration_cast<microseconds>(stop - start);
-
     cout << "\n";
     
     cout << "Esto tomo correr todo el programa: \n";
@@ -552,4 +551,3 @@ int main()
 
     return 0;
 }
-
