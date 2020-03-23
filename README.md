@@ -57,7 +57,7 @@ Se crearon dos árboles, un AVL implementado en memoria y un árbol B implementa
 ### 2.1 Pasos a seguir para utilizar la aplicación
 
 Hay dos maneras de correr el código: 
-a. De forma ineractiva, se deben correr los siguientes comandos en términal: 
+###### a. De forma ineractiva, se deben correr los siguientes comandos en términal: 
     -  g++ Menu.cpp -std=c++17 -o travis_gcc_cpp17
     - ./travis_gcc_cpp17
     
@@ -69,9 +69,9 @@ a. De forma ineractiva, se deben correr los siguientes comandos en términal:
   
   NOTA: el código de menu está implementado específicamente para enteros en el main, si desea utilizarlo de forma genérica habrá que cambiar el código main. 
   
-b. Corriéndolo con parámetros default. Deberá correr los siguientes comandos en terminal:
-    - g++ MenuNoUser.cpp -std=c++17 -o travis_gcc_cpp17
-    - ./travis_gcc_cpp17
+###### b. Corriéndolo con parámetros default. Deberá correr los siguientes comandos en terminal:
+    -  g++ MenuNoUser.cpp -std=c++17 -o travis_gcc_cpp17
+    -   ./travis_gcc_cpp17
     
 
 ## 3. Referencias
