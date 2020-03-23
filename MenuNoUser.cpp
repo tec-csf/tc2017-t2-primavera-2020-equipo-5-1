@@ -37,8 +37,6 @@ class Menu{
             auto time_after = high_resolution_clock::now();
              cout<<"TIEMPO DE INSERCIÓN EN NANOSEGUNDOS "<<duration_cast<nanoseconds>(time_after-time_before).count()<<endl;
             
-            cout<<"Cuántos números desesa buscar"<<endl;
-            cin>>num_busqueda;
             int array_busqueda[num_busqueda];
             
             for(int i=0; i<num_busqueda; i++){
