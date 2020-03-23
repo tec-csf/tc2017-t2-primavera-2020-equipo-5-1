@@ -1,11 +1,12 @@
 #include <stdio.h>
-#include<iostream> 
+#include <iostream> 
 #include <time.h>
-#include<string.h>
-#include<vector>
-#include<tuple>
+#include <string.h>
+#include <vector>
+#include <tuple>
 #include <math.h>
 #include <cstdlib>
+#include <algorithm>
 
 using namespace std;
 
