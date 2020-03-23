@@ -40,18 +40,22 @@ El proyecto debe seguir la siguiente estructura de carpetas:
 
 Se crearon dos árboles, un AVL implementado en memoria y un árbol B implementado en disco (por medio de archivos). 
 
-   #### Para el árbol B: 
-   INSERCIÓN: 
+#### Para el árbol B: 
+ El ábrol B se implementa a través de un archivo, al cual se le va escribiendo la estructura Nodo. 
+ 
+   ####### INSERCIÓN: 
        - se búsca el índice donde se va a insertar el nuevo número
-       - si este indice se encuentra en una pá
-    FUNCIÓN QUE BUSCA HIJO TENIENDO PADRE:
+       - si este indice se en un nodo lleno se llama a una función que divide el nodo y sub el nodo central al nodo padre. 
+       - si el nodo es la raíz se hace una divisón especial. 
+    ####### FUNCIÓN QUE BUSCA HIJO TENIENDO PADRE:
        - para la función que busca el hijo siendo el padre se utiliza la siguiente fórmula (H(index)= (index/N) + 1 + index)
-    FUNCIÓN QUE BUSCA PADRE TENIENDO HIJO:
+    ####### FUNCIÓN QUE BUSCA PADRE TENIENDO HIJO:
        - para la función que busca el hijo siendo el padre se utiliza la siguiente fórmula (P(index)= (index-2)/(N+1))
-    BORRAR: 
-        - se utiliza la función de búsqueda 
-    BUSCAR:
-        - 
+    ####### BORRAR: 
+        - se utiliza la función de búsqueda y luego se elimina, se utilizan procesos distintos si se está eliminando en un nodo hoja o raíz. 
+        - si la eliminación resulta en un desbalance, se vuelve a balancear el árbol.
+    ####### BUSCAR:
+        - se itera sobre el árbol de forma recursiva, si se encuentra el nodo que se está buscando, se regresa la posición. 
 
 
 ### 2.1 Pasos a seguir para utilizar la aplicación
