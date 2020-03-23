@@ -29,6 +29,7 @@
 #include<tuple>
 #include <math.h>
 #include <cstdlib>
+#include <algorithm>
 
 using namespace std;
 
@@ -232,10 +233,10 @@ void Insert(I in)
                break;
                
            }
-       }
+        }
 
     
-    } 
+        } 
     }
       
     
