@@ -60,7 +60,25 @@ BORRAR:
 
 BUSCAR:
     * se itera sobre el árbol de forma recursiva, si se encuentra el nodo que se está buscando, se regresa la posición. 
+    
+#### Para el árbol ALV:
+ Arbol avl se implementa de memoria se crea y se rota para temrinar de forma balanceada
+ 
+INSERCIÓN:
 
+       * Se busca el punto del arbol donde esta el nodo padre
+       * Se inserta el nodo dependiendo la ubicacion del noco padre
+       * Si el arbol termina desvalanciado se rotara como es devido para alcanzar su balance
+ BUSQUEDA: 
+   * Recorre el arbol leyendo cada padre hasta llegar al punto donde este el numero
+ 
+ BORRAR: 
+   * La funcion de busqueda es utilizada para encontrar el nodo
+   * El nodo es borrado de forma correcta de acuerdo a la base de datos 
+   * Si el nodo tiene nodos hijos se hace la rotacion necesaria
+   * Si despues de borrar el nodo el arbol resulta desbalanceado se hace la rotacion necesaria
+ 
+ 
 
 ### 2.1 Pasos a seguir para utilizar la aplicación
 
