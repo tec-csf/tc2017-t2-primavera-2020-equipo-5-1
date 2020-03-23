@@ -6,8 +6,6 @@
 1. Carla Pérez Gavilán Del Castillo - *A01023033* - *CSF*
 2. Rubén Hernández Rivas - *A01024669* - *CSF*
 3. Christian Alberto Dalma Schultz - *A01423166* - *CSF*
-4. *[Poner aquí Nombre y Apellidos del integrante 4]* - *[Poner aquí su Matrícula]* - *[Poner aquí su campus]*
-5. *[Poner aquí Nombre y Apellidos del integrante 5]* - *[Poner aquí su Matrícula]* - *[Poner aquí su campus]*
 
 ---
 ## 1. Aspectos generales
@@ -44,31 +42,31 @@ Se crearon dos árboles, un AVL implementado en memoria y un árbol B implementa
 
    #### Para el árbol B: 
    INSERCIÓN: 
-    - se búsca el índice donde se va a insertar el nuevo número
-    - se busca si este indice tiene hijos 
-    
+       - se búsca el índice donde se va a insertar el nuevo número
+       - si este indice se encuentra en una pá
     FUNCIÓN QUE BUSCA HIJO TENIENDO PADRE:
-       - para la función que busca el hijo siendo el padre se utiliza la siguiente fórmula: 
+       - para la función que busca el hijo siendo el padre se utiliza la siguiente fórmula (H(index)= (index/N) + 1 + index)
     FUNCIÓN QUE BUSCA PADRE TENIENDO HIJO:
-    
+       - para la función que busca el hijo siendo el padre se utiliza la siguiente fórmula (P(index)= (index-2)/(N+1))
     BORRAR: 
-    
+        - se utiliza la función de búsqueda 
     BUSCAR:
+        - 
 
 
 ### 2.1 Pasos a seguir para utilizar la aplicación
 
 Hay dos maneras de correr el código: 
 a. De forma ineractiva, se deben correr los siguientes comandos en términal: 
-    - g++ Menu.cpp -std=c++17 -o travis_gcc_cpp17
+    -  g++ Menu.cpp -std=c++17 -o travis_gcc_cpp17
     - ./travis_gcc_cpp17
+    
   Se le solicitará seleccionar las siguientes variables:
    - el número máximo: los números aleatorios se generaran del 0 a este número
    - el número de nodos: la cantidad de números que se le insertarán al árbol. 
    - el número de elementos a buscar: como máximo el número de nodos, misma cantidad que se utilizará para la eliminiación . 
    - si desea generar un árbol avl, o un árbol B
   
-   - si desea generar un 
   NOTA: el código de menu está implementado específicamente para enteros en el main, si desea utilizarlo de forma genérica habrá que cambiar el código main. 
   
 b. Corriéndolo con parámetros default. Deberá correr los siguientes comandos en terminal:
