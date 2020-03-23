@@ -1,6 +1,5 @@
 language: 
 - cpp
-- python
 python:
   - "3.5"
 dist: bionic
@@ -10,5 +9,5 @@ install:
   - pip install sympy
 
 script: 
-  - g++ Menu.cpp -std=c++17 -o travis_gcc_cpp17
+  - g++ MenuNoUser.cpp -std=c++17 -o travis_gcc_cpp17
   - ./travis_gcc_cpp17
