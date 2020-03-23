@@ -84,4 +84,6 @@ Hay dos maneras de correr el código:
 
 ## 3. Referencias
 
-    -  http://c.conclase.net/ficheros/?cap=004
+-  http://c.conclase.net/ficheros/?cap=004
+-  https://www.geeksforgeeks.org/fseek-in-c-with-example/
+-  http://www.cplusplus.com/reference/cstdio/
