@@ -41,7 +41,7 @@ El proyecto debe seguir la siguiente estructura de carpetas:
 Se crearon dos árboles, un AVL implementado en memoria y un árbol B implementado en disco (por medio de archivos). 
 
 #### Para el árbol B: 
- El ábrol B se implementa a través de un archivo, al cual se le va escribiendo la estructura Nodo. 
+ El árbol B se implementa a través de un archivo, al cual se le va escribiendo la estructura Nodo. 
  
 INSERCIÓN: 
 
