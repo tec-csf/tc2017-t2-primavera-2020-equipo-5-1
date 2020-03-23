@@ -1,4 +1,4 @@
 all:
 	rm datos.dat
-	g++ archivoAleatorio.cpp -o a
-	./a
+	g++ -std=c++17  Menu.cpp -o Menu
+	./Menu
