@@ -1,12 +1,34 @@
+/**
+ * This file is part of {{ tc2017-t2-primavera-2020-equipo-5-1 }}.
+ *
+ * Developed for Diseño, Análisis de Algoritmos
+ * This product includes software developed by the LSST Project
+ * (https://www.lsst.org).
+ * See the COPYRIGHT file at the top-level directory of this distribution
+ * for details of code ownership.
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
 #include <stdio.h>
-#include <iostream> 
+#include<iostream> 
 #include <time.h>
-#include <string.h>
-#include <vector>
-#include <tuple>
+#include<string.h>
+#include<vector>
+#include<tuple>
 #include <math.h>
 #include <cstdlib>
-#include <algorithm>
 
 using namespace std;
 
@@ -16,9 +38,13 @@ template <class T>
 struct Node
 {
     T key[N];
-    int nivel;
 };
 
+
+/**
+ * File Manager stores all functions related to writting, reading and eliminated in file. 
+ *
+ */
 
 template <class T>
 class FileManager{
@@ -26,78 +52,95 @@ class FileManager{
     Node<T> temp;
     FILE* archivo;
 
-FileManager(){
+FileManager()
+{
       archivo = fopen("datos.dat", "w+b");
 }
-~FileManager(){
+~FileManager()
+{
      fclose(archivo);
 }
-void leerArchivo(){
-    fseek(archivo, 0, SEEK_SET);
-    int counter =0;
-    if(!archivo) 
-        printf("no existe archivo a leer"); 
-    if(archivo != NULL){
-        while(fread (&temp, sizeof(temp), 1, archivo)== 1){
-        cout<<"-----------"<<counter<<endl;
 
-        for(int i=0; i<N; i++){
-        printf ("nodo = %d\n", temp.key[i]);
+/**
+ * Reads all nodes in file 
+ *
+ */
+
+        void leerArchivo()
+        {
+            fseek(archivo, 0, SEEK_SET);
+            int counter =0;
+            if(!archivo) 
+                printf("no existe archivo a leer"); 
+            if(archivo != NULL)
+            {
+                while(fread (&temp, sizeof(temp), 1, archivo)== 1)
+                {
+                cout<<"-----------"<<counter<<endl;
+
+                    for(int i=0; i<N; i++)
+                    {
+                    printf ("nodo = %d\n", temp.key[i]);
+                    }
+                counter++;
+                }
+                
+            }else
+            {
+                perror("No se puede abrir datos.dat");
+            }
         }
-        counter++;
-        }
-        
-    }else{
-        perror("No se puede abrir datos.dat");
-    }
-}
 
 
+/**
+ * Writes a node in a specific position within file
+ *
+ * @param[in] the index where to insert the node 
+* @param[in] The node that will be inserted 
+ */
 
-void escribirRegistro(int i, Node<int> m)
-{   
-    fseek(archivo, (i)*sizeof(temp), SEEK_SET);
-    fwrite (&m, sizeof(temp), 1, archivo);
-}
+            void escribirRegistro(int i, Node<int> m)
+            {   
+                fseek(archivo, (i)*sizeof(temp), SEEK_SET);
+                fwrite (&m, sizeof(temp), 1, archivo);
+            }
 
-void agregarRegistro(Node<int> m)
-{   
-    fseek(archivo, 0, SEEK_END);
-    fwrite (&m, sizeof(temp), 1, archivo);
-}
+/**
+ * Adds a node by the end of the file 
+ *
+ * @param[in] Node to write
+ */
 
-int finalIndice(){
-    fseek(archivo, 0, SEEK_END);
-    return ftell(archivo)/sizeof(temp);
-}
+            void agregarRegistro(Node<int> m)
+            {   
+                fseek(archivo, 0, SEEK_END);
+                fwrite (&m, sizeof(temp), 1, archivo);
+            }
 
+/**
+ * Tells us the position of the last node in file
+ *
+ * @param[out] integer telling us position of end of file 
+ */
+            int finalIndice()
+            {
+                fseek(archivo, 0, SEEK_END);
+                return ftell(archivo)/sizeof(temp);
+            }
 
-Node<T> leerConIndice(int i)
-{   
-    fseek(archivo, (i)*sizeof(temp), SEEK_SET);
-    fread (&temp, sizeof(temp), 1, archivo);
-    return temp;
-}
+/**
+ * Reads the node at index i 
+ *
+ * @param[in] index where node will be read 
+ * @param[out] Node that has just been read 
+ */
 
-void borrarRegistro(int in){
-    FILE* temp_file = fopen("temp.dat", "w+b");
-    fseek(temp_file, sizeof(temp), SEEK_SET);
-    for(int i=0; i<finalIndice(); i++){
-        if(i!=in){
-            Node<T> to_save = leerConIndice(i);
-            fwrite(&to_save, sizeof(temp), 1, temp_file);
-        }
-    }
-    fclose(temp_file);
-    
-    fclose(archivo);
-    char file_temp[] = "temp.dat";
-    char file_old[] = "datos.dat";
-    remove(file_old); //rename temp.db to foo.db
-    rename(file_temp, file_old);
-    archivo = fopen(file_old, "w+b");
-}
-
+            Node<T> leerConIndice(int i)
+            {   
+                fseek(archivo, (i)*sizeof(temp), SEEK_SET);
+                fread (&temp, sizeof(temp), 1, archivo);
+                return temp;
+            }
 };
 
 template <class I>
@@ -113,6 +156,14 @@ BTree(){
     depth=0;
     current_index=0;
 }
+
+/**
+ * Checks if node is full 
+ *
+ * @param[in] index of node to check 
+ * @param[out] boolean that states 0 it is not full or 1 it is full
+ */
+
 bool NodeFull(int index){
     Node<I> root = f.leerConIndice(index);
     for(int i=0; i<N; i++){
@@ -124,8 +175,23 @@ bool NodeFull(int index){
 }
 
 
+/**
+ * Auxiliary funtion for insert that checks whether Node is already in tree so that no two nodes are equal
+ *
+ */
+
+void insert(I in){
+    if(Buscar(in)==-1){
+        Insert(in);
+    }
+}
 
 
+/**
+ * Main insert function, inserts node into B tree
+ *
+ * @param[in] number to be inserted in b tree 
+ */
 void Insert(I in) 
 { 
 
@@ -170,10 +236,18 @@ void Insert(I in)
 
     
     } 
-      }
+    }
       
     
 }
+
+
+/**
+ * Inserts number once we already know the index where it should be inserted 
+ *
+ * @param[in] number to be inserted 
+ * @param[in] index of where the number should be inserted 
+ */
 
 void insertNode(I in, int where_insert){
     Node<I> n= f.leerConIndice(where_insert);
@@ -186,6 +260,12 @@ void insertNode(I in, int where_insert){
     
 }   
 
+/**
+ * Converts a Node into a Vector 
+ *
+ * @param[in] Node that must be converted to vector
+ * @param[out] Vector of length N+1 
+ */
 
 vector<I> nodeToArray(Node<I> node){
     vector<I> temporal;
@@ -197,6 +277,13 @@ vector<I> nodeToArray(Node<I> node){
     }
     return temporal;
 }
+
+/**
+ * Converts a Vector into Node
+ *
+ * @param[in] Vector that will be converted to node 
+ * @param[out] Node with all elements in vector form parameter 
+ */
 
 Node<I> arrayToNode(vector<I> vec){
     Node<I> temporal;
@@ -210,6 +297,13 @@ Node<I> arrayToNode(vector<I> vec){
     }
     return temporal;
 }
+
+/**
+ * Splits a full node where a new node needs to be inserted 
+ *
+ * @param[in] Index of node that needs to be splitted, and number to be inserted 
+ */
+
 
 void splitChild(int index_to_split, I to_insert)
 {
@@ -292,6 +386,16 @@ void splitChild(int index_to_split, I to_insert)
     }
 }
 
+/**
+ * When there is a possibility of filling the leaves before filling the root
+ *
+ * @param[in] numbers of filled out node
+ * @param[in] parent node of filled out node 
+ * @param[in] index of filled out node 
+ * @param[in] index of node where parent node is stored.
+ * @param[out] number that should be reinserted in parent node 
+ */
+
 int specialSplit(vector<I> vector_temp, int p, int index_to_split, int parent_index){
     int return_value=0;
      Node<I> node_insertion;
@@ -314,6 +418,10 @@ int specialSplit(vector<I> vector_temp, int p, int index_to_split, int parent_in
     return return_value;
 }
 
+/**
+ * Fills all nodes that aren't being used with 0's
+ *
+ */
 void fillInOthers(){
     Node<I> fill; 
     fill= initialize(fill);
@@ -322,6 +430,13 @@ void fillInOthers(){
     }
 }
 
+/**
+ * checks if a specific node si occupied 
+ * 
+ * @param[in] node to check whether it is occupierd
+ * @param[out] if it is occupied returns number in node, if not returns -1
+ *
+ */
 int Occupied(int p){
     int index = p%N;
     int i = p/N;
@@ -333,6 +448,13 @@ int Occupied(int p){
     }
 }
 
+/**
+ * checks if a specific node si occupied 
+ * 
+ * @param[in] node to check whether it is occupierd
+ * @param[out] if it is occupied returns number in node, if not returns -1
+ *
+ */
 void moveAll(int no_move, int initial){
     Node<I> n;
     for(int i= getLast(depth)-no_move; i>=initial; i--){
@@ -345,6 +467,14 @@ void moveAll(int no_move, int initial){
     }
 }
 
+/**
+ * Gets the last node of a specific level
+ * 
+ * @param[in] the level or depth 
+ * @param[out] the index of the last node in that level 
+ *
+ */
+
 int getLast(int d){
     int acum=0;
     for(int i=0; i<=d; i++){
@@ -353,15 +483,42 @@ int getLast(int d){
     return acum-1;
 }
 
+
+/**
+ * Gets the last furst of a specific level
+ * 
+ * @param[in] the level or depth 
+ * @param[out] the index of the first node in that level 
+ *
+ */
+
 int getFirst(int d){
     return getLast(d-1)+1;
 }
+
+
+/**
+ * Sets all node to zeros 
+ * 
+ * @param[in] node that we wan't to initialize 
+ * @param[out] node with all numbers set to zeros
+ *
+ */
+
 Node<I> initialize(Node<I> node){
     for(int i=0; i<N; i++){
         node.key[i]=0;
     }
     return node;
 }
+
+/**
+ * Gets parent to the right of index 
+ * 
+ * @param[in] index to which we want to retrieve parent 
+ * @param[out] the index of parent node 
+ *
+ */
 
 int getParentRight(int index)
 {
@@ -376,6 +533,13 @@ if(index==0){
  }
 }
 
+/**
+ * Gets parent to the left of index 
+ * 
+ * @param[in] index of child from which we will retrieve parent
+ * @param[out] the index of parent node 
+ *
+ */
 
 int getParentLeft(int index){
     if(index==0){
@@ -388,6 +552,15 @@ int getParentLeft(int index){
  }
 }
 
+/**
+ * Gets child node to the left of index 
+ * 
+ * @param[in] index of parent from which we will retrieve child
+ * @param[out] the index of parent node 
+ *
+ */
+
+
 int getChildLeft(int index){
     int result=0;
     result= (index/N)+index+1;
@@ -397,6 +570,14 @@ int getChildLeft(int index){
     return result;
 }
 
+/**
+ * Gets child node to the right of index 
+ * 
+ * @param[in] index of parent from which we will retrieve child
+ * @param[out] the index of parent node 
+ *
+ */
+
 int getChildRight(int index){
     int left = getChildLeft(index);
     if(left == -1){
@@ -405,21 +586,42 @@ int getChildRight(int index){
     return left+1;
 }
 
+/**
+ * Search function, that returns the index of number being searched in tree 
+ * 
+ * @param[in] number to search for in tree 
+ * @param[out] the index of where the number was found 
+ *
+ */
+
 int Buscar(int number_to_search){
+    int resultado=0;
+    if(f.finalIndice()==0){
+        return -1;
+    }
     current_node= f.leerConIndice(current_index);
     for(int i=0; i<N; i++){
+
         if(current_node.key[i]==number_to_search){
             return (N*current_index)+i;
-        }else if(current_node.key[i]>number_to_search || current_node.key[i]==0){
+        }else if((current_node.key[i]>number_to_search || current_node.key[i]==0) && depth!=nivel){
             current_index= getChildLeft(current_index+i);
+            nivel++;
             return Buscar(number_to_search);
         }
     }
+    nivel=0;
     current_index=0;
     current_node= f.leerConIndice(current_index);
     return -1;
 }
 
+/**
+ * function that erases particular node from tree 
+ * 
+ * @param[in] number to erase from tree
+ *
+ */
 void Borrar(int no_erase){
     int general_index = Buscar(no_erase);
     if(general_index != -1)
@@ -429,6 +631,7 @@ void Borrar(int no_erase){
         current_node.key[general_index%N]=0;
         f.escribirRegistro(current_index, current_node);
         if(getLast(depth-1)< current_index){
+            //when it is leaf node
             
             if(nodeSize(current_node)==1){
             
@@ -455,10 +658,9 @@ void Borrar(int no_erase){
                     f.escribirRegistro(getChildRight(parent_index), replace);
                     sortNode(parent_node, parent_index/N);
                 }else if(nodeSize(replace)==0){
-                    //si no tiene ninguno el de a lado 
+                    //doesn't have node from right try left, if it doesn't have from left 
                 }
-                else{//tiene un nodo a lado para balancaerlo 
-
+                else{//borrowing form right 
                     insertNode(Occupied(parent_index), current_index);
                     Node<I> parent_node = f.leerConIndice(parent_index/N);
                     parent_node.key[parent_index%N]=0;
@@ -481,7 +683,8 @@ void Borrar(int no_erase){
              current_node= f.leerConIndice(current_index);
             sortNode(current_node, current_index);
            
-        }else{//no es hoja 
+        }else{
+            //when it is non leaf
 
         }   
     }
@@ -489,14 +692,29 @@ void Borrar(int no_erase){
     current_node= f.leerConIndice(current_index);
 }
 
-void sortNode(Node<I> nod, int index_node){
+
+/**
+ * Function that sorts elements within node 
+ * 
+ * @param[in] node that needs to be sorted
+ * @param[in] index where node to be sorted is found 
+ *
+ */
+void sortNode(Node<I> nod, int index_node)
+{
     vector<I> vec_sort= nodeToArray(nod);
     sort(vec_sort.begin(), vec_sort.end());
     Node<I> node_sorted= arrayToNode(vec_sort);
     f.escribirRegistro(index_node, node_sorted);
-
-
 }
+
+/**
+ * Function that returns the size of node 
+ * 
+ * @param[in] node from which we want to retrieve size 
+ * @param[out] size of node 
+ *
+ */
 int nodeSize(Node<I> n){
     int size=0;
     for(int i=0; i<N; i++){
@@ -507,4 +725,3 @@ int nodeSize(Node<I> n){
     return size;
 }
 };
-
