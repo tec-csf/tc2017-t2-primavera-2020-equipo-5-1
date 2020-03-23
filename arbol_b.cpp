@@ -5,8 +5,6 @@
 #include<vector>
 #include<tuple>
 #include <math.h>
-
-
 #include <cstdlib>
 
 using namespace std;
@@ -80,6 +78,24 @@ Node<T> leerConIndice(int i)
     return temp;
 }
 
+void borrarRegistro(int in){
+    FILE* temp_file = fopen("temp.dat", "w+b");
+    fseek(temp_file, sizeof(temp), SEEK_SET);
+    for(int i=0; i<finalIndice(); i++){
+        if(i!=in){
+            Node<T> to_save = leerConIndice(i);
+            fwrite(&to_save, sizeof(temp), 1, temp_file);
+        }
+    }
+    fclose(temp_file);
+    
+    fclose(archivo);
+    char file_temp[] = "temp.dat";
+    char file_old[] = "datos.dat";
+    remove(file_old); //rename temp.db to foo.db
+    rename(file_temp, file_old);
+    archivo = fopen(file_old, "w+b");
+}
 
 };
 
@@ -403,30 +419,91 @@ int Buscar(int number_to_search){
     return -1;
 }
 
+void Borrar(int no_erase){
+    int general_index = Buscar(no_erase);
+    if(general_index != -1)
+    {
+        current_index = general_index/N;
+        current_node = f.leerConIndice(current_index);
+        current_node.key[general_index%N]=0;
+        f.escribirRegistro(current_index, current_node);
+        if(getLast(depth-1)< current_index){
+            
+            if(nodeSize(current_node)==1){
+            
+                int parent_index = getParentRight(current_index);
+                Node<I> replace = f.leerConIndice(getChildRight(parent_index));
+                
 
+                if(nodeSize(replace)==2){
+                    
+                    insertNode(Occupied(parent_index), current_index);
+                   
+
+                    Node<I> parent_node = f.leerConIndice(parent_index);
+                    parent_node.key[parent_index%N]=0;
+                    f.escribirRegistro(parent_index/N, parent_node);
+
+                    current_node = f.leerConIndice(current_index);
+                    for(int i=0; i<N/2; i++){
+                        current_node.key[N/2+i]=replace.key[i];
+                    }
+                    f.escribirRegistro(current_index, current_node);
+                  
+                    replace = initialize(replace);
+                    f.escribirRegistro(getChildRight(parent_index), replace);
+                    sortNode(parent_node, parent_index/N);
+                }else if(nodeSize(replace)==0){
+                    //si no tiene ninguno el de a lado 
+                }
+                else{//tiene un nodo a lado para balancaerlo 
+
+                    insertNode(Occupied(parent_index), current_index);
+                    Node<I> parent_node = f.leerConIndice(parent_index/N);
+                    parent_node.key[parent_index%N]=0;
+                    f.escribirRegistro(parent_index/N, parent_node);
+                    
+
+                    insertNode(replace.key[0], parent_index/N);
+                    
+                    replace.key[0]=0;
+                    f.escribirRegistro(getChildRight(parent_index), replace);
+                   
+                    sortNode(replace, getChildRight(parent_index));
+
+                    sortNode(parent_node, parent_index);
+                   
+
+                }
+
+            }
+             current_node= f.leerConIndice(current_index);
+            sortNode(current_node, current_index);
+           
+        }else{//no es hoja 
+
+        }   
+    }
+    current_index=0;
+    current_node= f.leerConIndice(current_index);
+}
+
+void sortNode(Node<I> nod, int index_node){
+    vector<I> vec_sort= nodeToArray(nod);
+    sort(vec_sort.begin(), vec_sort.end());
+    Node<I> node_sorted= arrayToNode(vec_sort);
+    f.escribirRegistro(index_node, node_sorted);
+
+
+}
+int nodeSize(Node<I> n){
+    int size=0;
+    for(int i=0; i<N; i++){
+        if(n.key[i]!=0){
+            size++;
+        }
+    }
+    return size;
+}
 };
 
-
-int main(){
-    BTree<int> arb;
-    int array_insert[19] = {10, 20, 65, 90, 4, 5, 25, 56, 57, 60, 70, 75, 12, 18, 80, 85, 94, 95, 8};
-    for(int i=0; i<19; i++){
-        arb.Insert(array_insert[i]);
-    }
-
-
-
-  
-
-    cout<<"this is the result"<<endl;
-    arb.f.leerArchivo();
-
-    cout<<" searching for 90, found in "<<arb.Buscar(90)<<endl;
-        cout<<" searching for 10, found in "<<arb.Buscar(10)<<endl;
-        cout<<" searching for 11, found in "<<arb.Buscar(11)<<endl;
-
-
-
-
-    return 0;
-}
