@@ -40,12 +40,42 @@ El proyecto debe seguir la siguiente estructura de carpetas:
 
 ## 2. Solución
 
-*[Incluya aquí una explicación de la solución implementada]*
+Se crearon dos árboles, un AVL implementado en memoria y un árbol B implementado en disco (por medio de archivos). 
+
+   #### Para el árbol B: 
+   INSERCIÓN: 
+    - se búsca el índice donde se va a insertar el nuevo número
+    - se busca si este indice tiene hijos 
+    
+    FUNCIÓN QUE BUSCA HIJO TENIENDO PADRE:
+       - para la función que busca el hijo siendo el padre se utiliza la siguiente fórmula: 
+    FUNCIÓN QUE BUSCA PADRE TENIENDO HIJO:
+    
+    BORRAR: 
+    
+    BUSCAR:
+
 
 ### 2.1 Pasos a seguir para utilizar la aplicación
 
-*[Incluya aquí una guía paso a paso para poder utilizar la aplicación, desde la clonación del repositorio, la compilación del código hasta la ejecución de los ejemplos para visualizar los resultados.]*
+Hay dos maneras de correr el código: 
+a. De forma ineractiva, se deben correr los siguientes comandos en términal: 
+    - g++ Menu.cpp -std=c++17 -o travis_gcc_cpp17
+    - ./travis_gcc_cpp17
+  Se le solicitará seleccionar las siguientes variables:
+   - el número máximo: los números aleatorios se generaran del 0 a este número
+   - el número de nodos: la cantidad de números que se le insertarán al árbol. 
+   - el número de elementos a buscar: como máximo el número de nodos, misma cantidad que se utilizará para la eliminiación . 
+   - si desea generar un árbol avl, o un árbol B
+  
+   - si desea generar un 
+  NOTA: el código de menu está implementado específicamente para enteros en el main, si desea utilizarlo de forma genérica habrá que cambiar el código main. 
+  
+b. Corriéndolo con parámetros default. Deberá correr los siguientes comandos en terminal:
+    - g++ MenuNoUser.cpp -std=c++17 -o travis_gcc_cpp17
+    - ./travis_gcc_cpp17
+    
 
 ## 3. Referencias
 
-*[Incluya aquí las referencias a sitios de interés y cualquier otra información que haya utilizado para realizar la actividad y que le puedan ser de utilidad a otras personas que quieran usarlo como referencia]*
+    -  http://c.conclase.net/ficheros/?cap=004
