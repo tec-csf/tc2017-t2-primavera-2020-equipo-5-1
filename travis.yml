@@ -1,9 +1,0 @@
-language: 
-- cpp
-dist: bionic
-compiler: gcc
-
-
-script: 
-  - g++ -std=c++17  Menu.cpp -o Menu
-	./Menu
